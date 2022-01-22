@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const reactionSchema = new Schema(
@@ -6,7 +6,7 @@ const reactionSchema = new Schema(
         reactionBody: {
             type: String,
             required: true,
-            maxlength:  140,
+            maxlength:  280,
         },
         username: {
             type: String,
@@ -16,6 +16,10 @@ const reactionSchema = new Schema(
             type: Date,
             default: Date.now,
             get: timestamp => dateFormat(timestamp)
+        },
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
         }
     },
     {
